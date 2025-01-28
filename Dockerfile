@@ -10,7 +10,7 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
     npm install -g yarn@1.22.19
 
 
-WORKDIR /app
+WORKDIR /my-saas
 
 COPY Gemfile Gemfile.lock ./
 
