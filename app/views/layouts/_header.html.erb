@@ -13,6 +13,13 @@
               Home
             <% end %>
           </li>
+
+          <li class="nav-item">
+            <%= link_to users_path, class: "nav-link #{'active' if current_page?(users_path) }" do %>
+              <div class="fa fa-users"></div>
+              Users
+            <% end %>
+          </li>
         </ul>
 
         <ul class="navbar-nav mr-right">
