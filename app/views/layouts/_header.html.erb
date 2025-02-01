@@ -23,6 +23,19 @@
               Users
             <% end %>
           </li>
+
+          <li class="nav-item">
+            <%= link_to tenants_path, class: "nav-link #{'active' if current_page?(tenants_path) }" do %>
+              <div class="fa fa-users"></div>
+              Tenants
+            <% end %>
+
+          <li class="nav-item">
+            <%= link_to new_tenant_path, class: "nav-link #{'active' if current_page?(new_tenant_path) }" do %>
+              <div class="fa fa-users"></div>
+              New Tenant
+            <% end %>
+          </li>
         </ul>
 
         <ul class="navbar-nav mr-right">
