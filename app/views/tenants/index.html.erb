@@ -14,18 +14,21 @@
     <tr>
       <th>id</th>
       <th>name</th>
+      <th>users</th>
     </tr>
   </thead>
   <tbody>
     <% @tenants.each do |tenant| %>
       <tr>
-          <td>
-            <%= link_to tenant.id, tenant %>
-          </td>
-
-          <td>
-            <%= tenant.name %>
-          </td>
+        <td>
+          <%= link_to tenant.id, tenant %>
+        </td>
+        <td>
+          <%= tenant.name %>
+        </td>
+        <td>
+          <%= tenant.users.compact.join(', ') %>
+        </td>
       </tr>
     <% end %>
   </tbody>
