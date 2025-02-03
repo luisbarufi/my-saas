@@ -6,6 +6,11 @@ class TenantsController < ApplicationController
     @tenants = Tenant.all
   end
 
+  def my
+    @tenants = current_user.tenants
+    render 'index'
+  end
+
   # GET /tenants/1 or /tenants/1.json
   def show
   end

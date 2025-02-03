@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :users, only: [:index, :show]
-  resources :tenants
+
+  resources :tenants do
+    get :my, on: :collection
+  end
+
   resources :members
 end
