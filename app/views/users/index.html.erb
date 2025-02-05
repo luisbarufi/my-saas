@@ -15,7 +15,7 @@
       <th>id</th>
       <th>email</th>
       <th>tenats</th>
-      <th>accepted invitation</th>
+      <th>invitable</th>
     </tr>
   </thead>
   <tbody>
@@ -33,7 +33,7 @@
         <td>
           <% if user.created_by_invite? %>
             <span class="badge text-bg-secondary">
-              created_by_invite
+              created_by_invite from <%= user.invited_by %>
             </span>
             <% if user.invitation_accepted_at.present? %>
               <span class="badge text-bg-secondary">

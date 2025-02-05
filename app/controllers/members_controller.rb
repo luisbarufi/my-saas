@@ -16,7 +16,7 @@ class MembersController < ApplicationController
       return
     end
   
-    user ||= User.invite!(email: email)
+    user ||= User.invite!({ email: email }, current_user)
     Member.create!(user: user, tenant: current_tenant)
   
     redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
