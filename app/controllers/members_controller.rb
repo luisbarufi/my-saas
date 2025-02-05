@@ -7,17 +7,16 @@ class MembersController < ApplicationController
   end
 
   def invite
-    current_tenant = Tenant.first
     email = params[:email]
     user = User.find_by(email: email)
   
-    if user && Member.exists?(user: user, tenant: current_tenant)
+    if user && Member.exists?(user: user)
       redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
       return
     end
   
     user ||= User.invite!({ email: email }, current_user)
-    Member.create!(user: user, tenant: current_tenant)
+    Member.create!(user: user)
   
     redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
   end
@@ -82,6 +81,6 @@ class MembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def member_params
-      params.require(:member).permit(:user_id, :tenant_id)
+      params.require(:member).permit(:user_id)
     end
 end

@@ -14,10 +14,10 @@
             <span class="nav-link"><%= current_tenant %></span>
           </li>
           <li class="nav-item">
-            <span class="nav-link"><%= current_tenant.id %></span>
+            <span class="nav-link"><%= current_tenant&.id %></span>
           </li>
           <li class="nav-item">
-            <span class="nav-link"><%= current_tenant.name %></span>
+            <span class="nav-link"><%= current_tenant&.name %></span>
           </li>
           <li class="nav-item">
             <%= link_to root_path, class: "nav-link #{'active' if current_page?(root_path) }" do %>
