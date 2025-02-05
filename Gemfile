@@ -32,6 +32,7 @@ gem 'concurrent-ruby', '1.3.4'
 gem 'devise'
 gem 'simple_form'
 gem 'devise_invitable', '~> 2.0.0'
+gem 'acts_as_tenant'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
