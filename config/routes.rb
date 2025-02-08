@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
 
-  resources :members do
+  resources :members, execpt: [:create, :new] do
     get :invite, on: :collection
   end
 end

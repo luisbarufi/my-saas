@@ -26,28 +26,8 @@ class MembersController < ApplicationController
   def show
   end
 
-  # GET /members/new
-  def new
-    @member = Member.new
-  end
-
   # GET /members/1/edit
   def edit
-  end
-
-  # POST /members or /members.json
-  def create
-    @member = Member.new(member_params)
-
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to @member, notice: "Member was successfully created." }
-        format.json { render :show, status: :created, location: @member }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /members/1 or /members/1.json
