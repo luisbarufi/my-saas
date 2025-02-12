@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   before_action :set_member, only: %i[ show edit update destroy ]
+  before_action :require_tenant
 
   # GET /members or /members.json
   def index
@@ -63,4 +64,8 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(:user_id)
     end
+
+    def require_tenant
+      redirect_to root_path, alert: 'No tenant set!' if current_tenant.nil?
+    end  
 end
