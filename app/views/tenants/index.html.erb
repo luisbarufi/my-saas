@@ -32,7 +32,9 @@
         <td>
           <% if current_user.tenants.include?(tenant) %>
             <% if current_user.tenant == tenant %>
+            <span class="badge text-bg-success">
               current_tenant
+            </span>
             <% else %>
               <%= link_to 'Switch tenant', switch_tenant_path(tenant), method: :patch %>
             <% end %>
