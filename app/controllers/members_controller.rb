@@ -10,15 +10,16 @@ class MembersController < ApplicationController
   def invite
     email = params[:email]
     user = User.find_by(email: email)
-  
+    return redirect_to members_path, alert: "No email provided!" if email.blank?
+
     if user && Member.exists?(user: user)
       redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
       return
     end
-  
+
     user ||= User.invite!({ email: email }, current_user)
     Member.create!(user: user)
-  
+
     redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
   end
   
