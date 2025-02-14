@@ -31,7 +31,7 @@
             <% end %>
           </li>
 
-          <% if current_user.tenant_id %>
+          <% if current_user.tenant_id && current_tenant %>
             <li class="nav-item">
               <%= link_to members_path, class: "nav-link #{'active' if current_page?(members_path) }" do %>
                 <div class="fa fa-users"></div>
