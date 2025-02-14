@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @member.user_id %>
-</p>
-
-<p>
-  <strong>Tenant:</strong>
-  <%= @member.tenant_id %>
-</p>
-
-<%= link_to 'Edit', edit_member_path(@member) %> |
-<%= link_to 'Back', members_path %>
+<div class="card">
+  <div class="card-header">
+    <h4>
+      <strong>User:</strong>
+      <%= @member.user_id %>
+    </h4>
+  </div>
+  <div class="card-body">
+    <strong>Tenant:</strong>
+    <%= @member.tenant_id %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Edit', edit_member_path(@member) %> |
+    <%= link_to 'Back', members_path %>
+  </div>
+</div>
