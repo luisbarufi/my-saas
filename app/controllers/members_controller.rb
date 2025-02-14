@@ -9,20 +9,30 @@ class MembersController < ApplicationController
 
   def invite
     email = params[:email]
-    user = User.find_by(email: email)
-    return redirect_to members_path, alert: "No email provided!" if email.blank?
+    user_from_email = User.where(email: email).first
 
-    if user && Member.exists?(user: user)
-      redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
-      return
+    if email.present?
+      if user_from_email.present?
+        if Member.where(user: user_from_email).any?
+          redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
+        else
+          new_member = Member.create!(user: user_from_email)
+          MemberMailer.invited(new_member).deliver_now
+          redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
+        end
+      elsif user_from_email.nil?
+        new_user = User.invite!({ email: email }, current_user)
+        if new_user.persisted?
+          Member.create!(user: new_user)
+          redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.id}"
+        else
+          redirect_to members_path, alert: "Something went wrong. Plase tray again"
+        end
+      end
+    else
+      redirect_to members_path, alert: "No email provided!"
     end
-
-    user ||= User.invite!({ email: email }, current_user)
-    Member.create!(user: user)
-
-    redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
   end
-  
 
   # GET /members/1 or /members/1.json
   def show
