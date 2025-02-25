@@ -31,7 +31,7 @@
             <% end %>
           </li>
 
-          <% if current_user.tenant_id && current_tenant %>
+          <% if current_user.tenant_id && ActsAsTenant.current_tenant %>
             <li class="nav-item">
               <%= link_to members_path, class: "nav-link #{'active' if current_page?(members_path) }" do %>
                 <div class="fa fa-users"></div>
@@ -44,7 +44,7 @@
         <ul class="navbar-nav mr-right">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <% if current_tenant %>
+              <% if ActsAsTenant.current_tenant %>
                 <%= current_tenant&.id %>
                 <%= current_tenant&.name %>
               <% else %>

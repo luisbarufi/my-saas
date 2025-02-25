@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
   before_action :set_member, only: %i[ show edit update destroy ]
+  include SetTenant
   include RequireTenant
 
   # GET /members or /members.json

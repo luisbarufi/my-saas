@@ -5,7 +5,9 @@ module RequireTenant
     before_action :require_tenant
 
     def require_tenant
-      redirect_to root_path, alert: 'No tenant set!' if current_tenant.nil?
+      if ActsAsTenant.current_tenant.nil?
+        redirect_to root_path, alert: 'No tenant set!' 
+      end
     end  
   end
 end
