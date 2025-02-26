@@ -21,6 +21,9 @@
             <%= link_to users_path, class: "nav-link #{'active' if current_page?(users_path) }" do %>
               <div class="fa fa-users"></div>
               Users
+              <span class="badge text-bg-info">
+                <%= User.count %>
+              </span>
             <% end %>
           </li>
 
@@ -28,14 +31,22 @@
             <%= link_to tenants_path, class: "nav-link #{'active' if current_page?(tenants_path) }" do %>
               <div class="fa fa-users"></div>
               Tenants
+              <span class="badge text-bg-info">
+                <%= Tenant.count %>
+              </span>
             <% end %>
           </li>
 
-          <% if current_user.tenant_id && ActsAsTenant.current_tenant %>
+          <% if current_user.tenants.include?(current_user.tenant) %>
             <li class="nav-item">
               <%= link_to members_path, class: "nav-link #{'active' if current_page?(members_path) }" do %>
                 <div class="fa fa-users"></div>
                 Members
+                <% if ActsAsTenant.current_tenant %>
+                  <span class="badge text-bg-info">
+                    <%= Member.count %>
+                  </span>
+                <% end %>
               <% end %>
             </li>
           <% end %>
@@ -44,9 +55,9 @@
         <ul class="navbar-nav mr-right">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <% if ActsAsTenant.current_tenant %>
-                <%= current_tenant&.id %>
-                <%= current_tenant&.name %>
+              <% if current_user.tenants.include?(current_user.tenant) %>
+                <%= current_user.tenant.id %>
+                <%= current_user.tenant.name %>
               <% else %>
                 Tenants
               <% end %>
