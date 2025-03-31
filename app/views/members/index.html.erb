@@ -9,6 +9,15 @@
   </div>
 </h3>
 
+<%= form_tag invite_members_path, method: :get, class: 'row g-3' do %>
+  <div class="col-auto">
+    <%= email_field_tag 'email', nil, class: 'form-control', placeholder: 'email' %>
+  </div>
+  <div class="col-auto">
+    <%= submit_tag "Invite a member", class: 'btn btn-primary mb-3' %>
+  </div>
+<% end %>
+
 <div class="table-responsive">
   <table class="table table-striped table-hover">
     <thead>
@@ -49,14 +58,3 @@
     </tbody>
   </table>
 </div>
-
-<hr />
-
-<%= form_tag invite_members_path, method: :get, class: 'row g-3' do %>
-  <div class="col-auto">
-    <%= email_field_tag 'email', nil, class: 'form-control', placeholder: 'email' %>
-  </div>
-  <div class="col-auto">
-    <%= submit_tag "Invite a member", class: 'btn btn-primary mb-3' %>
-  </div>
-<% end %>
