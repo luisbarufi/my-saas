@@ -16,7 +16,9 @@
         <th>id</th>
         <th>User</th>
         <th>Tenant id</th>
-        <th colspan="4">Tenant</th>
+        <th>Tenant</th>
+        <th colspan="4">invitable</th>
+
       </tr>
     </thead>
     <tbody>
@@ -26,6 +28,20 @@
           <td><%= member.user %></td>
           <td><%= member.tenant.id %></td>
           <td><%= member.tenant %></td>
+          <td>
+            <% if member.user.created_by_invite? %>
+              <span class="badge text-bg-secondary">
+                created_by_invite from <%= member.user.invited_by %>
+              </span>
+              <% if member.user.invitation_accepted_at.present? %>
+                <span class="badge text-bg-secondary">
+                    invitation accepted
+                </span>
+              <% else %>
+                <%= link_to 'Resend invitation', resend_invitation_user_path(member.user), method: :patch %>
+              <% end %>
+            <% end %>
+          </td>
           <td><%= link_to 'Show', member %></td>
           <td><%= link_to 'Edit', edit_member_path(member) %></td>
           <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>

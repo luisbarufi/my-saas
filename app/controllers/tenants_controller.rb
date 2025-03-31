@@ -68,7 +68,7 @@ class TenantsController < ApplicationController
     @tenant.destroy
 
     respond_to do |format|
-      format.html { redirect_to tenants_path, status: :see_other, notice: "Tenant was successfully destroyed." }
+      format.html { redirect_to my_tenants_path, status: :see_other, notice: "Tenant was successfully destroyed." }
       format.json { head :no_content }
     end
   end
