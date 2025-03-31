@@ -14,6 +14,9 @@
             <%= link_to root_path, class: "nav-link #{'active' if current_page?(root_path) }" do %>
               <div class="fa fa-home"></div>
               Home
+              <% if ActsAsTenant.current_tenant %>
+                <%= current_tenant.id %>
+              <% end %>
             <% end %>
           </li>
 

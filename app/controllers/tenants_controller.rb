@@ -1,6 +1,8 @@
 class TenantsController < ApplicationController
   before_action :set_tenant, only: %i[ show edit update destroy switch ]
 
+  set_current_tenant_through_filter
+
   # GET /tenants or /tenants.json
   def index
     @tenants = Tenant.all
@@ -22,6 +24,7 @@ class TenantsController < ApplicationController
 
   # GET /tenants/1 or /tenants/1.json
   def show
+    set_current_tenant(@tenant)
   end
 
   # GET /tenants/new
