@@ -1,24 +1,27 @@
-<ul class="navbar-nav me-auto">
-  <li class="nav-item">
-    <%= link_to tenant_path(current_tenant), class: "nav-link #{'active' if current_page?(tenant_path(current_tenant)) }" do %>
-      <%= current_tenant %>
-    <% end %>
-  </li>
-
-  <li class="nav-item">
-    <%= link_to dashboard_path, class: "nav-link #{'active' if current_page?(dashboard_path) }" do %>
-      Dashboard
-    <% end %>
-  </li>
-
-  <li class="nav-item">
-    <%= link_to members_path, class: "nav-link #{'active' if current_page?(members_path) }" do %>
-      Members
-      <% if ActsAsTenant.current_tenant %>
-        <span class="badge text-bg-info">
-          <%= Member.count %>
-        </span>
+<div class="sticky-top">
+  <ul class="nav flex-column bg-dark shadow rounded">
+    <li class="nav-item">
+      <%= link_to tenant_path(current_tenant), class: "nav-link #{'bg-light shadow rounded' if current_page?(tenant_path(current_tenant)) }" do %>
+        <%= current_tenant %>
       <% end %>
-    <% end %>
-  </li>
-</ul>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to dashboard_path, class: "nav-link #{'bg-light shadow rounded' if current_page?(dashboard_path) }" do %>
+        Dashboard
+      <% end %>
+    </li>
+
+    <li class="nav-item">
+      <%= link_to members_path, class: "nav-link #{'bg-light shadow rounded' if current_page?(members_path) }" do %>
+        Members
+        <% if ActsAsTenant.current_tenant %>
+          <span class="badge text-bg-info">
+            <%= Member.count %>
+          </span>
+        <% end %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<br>
