@@ -5,7 +5,7 @@ class TenantsController < ApplicationController
 
   # GET /tenants or /tenants.json
   def index
-    @tenants = Tenant.all
+    @tenants = Tenant.includes(:members, :users, members: [:user])
   end
 
   def switch

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show resend_invitation ]
 
   def index
-    @users = User.all
+    @users = User.includes(:members, :tenant, members: [:tenant])
   end
 
   def resend_invitation
