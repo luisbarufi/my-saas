@@ -11,12 +11,17 @@
       <% if current_user %>
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <%= link_to root_path, class: "nav-link #{'active' if current_page?(root_path) }" do %>
-              <div class="fa fa-home"></div>
-              Home
+            <div class="fa fa-home"></div>
+            <span class="nav-link">
               <% if ActsAsTenant.current_tenant %>
-                <%= current_tenant.id %>
+                <%= current_tenant %>
               <% end %>
+            </span>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to root_path, class: "nav-link #{'active' if current_page?(root_path) }" do %>
+              Home
             <% end %>
           </li>
 
@@ -41,6 +46,13 @@
           </li>
 
           <% if current_user.tenants.include?(current_user.tenant) %>
+            <li class="nav-item">
+              <%= link_to home_dashboard_path, class: "nav-link #{'active' if current_page?(home_dashboard_path) }" do %>
+                <div class="fa fa-users"></div>
+                Dashboard
+              <% end %>
+            </li>
+
             <li class="nav-item">
               <%= link_to members_path, class: "nav-link #{'active' if current_page?(members_path) }" do %>
                 <div class="fa fa-users"></div>
