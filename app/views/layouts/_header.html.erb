@@ -12,14 +12,6 @@
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <div class="fa fa-home"></div>
-            <span class="nav-link">
-              <% if ActsAsTenant.current_tenant %>
-                <%= current_tenant %>
-              <% end %>
-            </span>
-          </li>
-
-          <li class="nav-item">
             <%= link_to root_path, class: "nav-link #{'active' if current_page?(root_path) }" do %>
               Home
             <% end %>
@@ -44,35 +36,19 @@
               </span>
             <% end %>
           </li>
-
-          <% if current_user.tenants.include?(current_user.tenant) %>
-            <li class="nav-item">
-              <%= link_to dashboard_path, class: "nav-link #{'active' if current_page?(dashboard_path) }" do %>
-                <div class="fa fa-users"></div>
-                Dashboard
-              <% end %>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to members_path, class: "nav-link #{'active' if current_page?(members_path) }" do %>
-                <div class="fa fa-users"></div>
-                Members
-                <% if ActsAsTenant.current_tenant %>
-                  <span class="badge text-bg-info">
-                    <%= Member.count %>
-                  </span>
-                <% end %>
-              <% end %>
-            </li>
-          <% end %>
         </ul>
 
         <ul class="navbar-nav mr-right">
+          <% if current_user.tenants.include?(current_user.tenant) %>
+            <%= link_to tenant_path(current_user.tenant), class: "nav-link #{'active' if current_page?(tenant_path(current_user.tenant)) }" do %>
+              <%= current_user.tenant.name %>
+            <% end %>
+          <% end %>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <% if current_user.tenants.include?(current_user.tenant) %>
-                <%= current_user.tenant.id %>
-                <%= current_user.tenant.name %>
+                Tenants
               <% else %>
                 Tenants
               <% end %>
