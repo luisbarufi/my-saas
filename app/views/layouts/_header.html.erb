@@ -47,7 +47,7 @@
 
           <% if current_user.tenants.include?(current_user.tenant) %>
             <li class="nav-item">
-              <%= link_to home_dashboard_path, class: "nav-link #{'active' if current_page?(home_dashboard_path) }" do %>
+              <%= link_to dashboard_path, class: "nav-link #{'active' if current_page?(dashboard_path) }" do %>
                 <div class="fa fa-users"></div>
                 Dashboard
               <% end %>
