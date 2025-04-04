@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   get 'static_pages/index'
   get 'dashboard', to: 'home#dashboard'
+  get 'pricing', to: 'static_pages#pricing'
+  get 'about', to: 'static_pages#about'
+  get 'privacy', to: 'static_pages#privacy'
+  get 'terms', to: 'static_pages#terms'
 
   resources :users, only: [:index, :show] do
     member do
