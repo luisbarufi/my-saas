@@ -19,6 +19,7 @@
 
           <li class="nav-item">
             <%= link_to users_path, class: "nav-link #{'active' if current_page?(users_path) }" do %>
+              <i class="fas fa-users"></i>
               Users
               <span class="badge text-bg-info">
                 <%= User.count %>
@@ -28,6 +29,7 @@
 
           <li class="nav-item">
             <%= link_to tenants_path, class: "nav-link #{'active' if current_page?(tenants_path) }" do %>
+              <i class="fas fa-hotel"></i>
               Tenants
               <span class="badge text-bg-info">
                 <%= Tenant.count %>
@@ -39,12 +41,14 @@
         <ul class="navbar-nav mr-right">
           <% if current_user.tenants.include?(current_user.tenant) %>
             <%= link_to tenant_path(current_user.tenant), class: "nav-link #{'active' if current_page?(tenant_path(current_user.tenant)) }" do %>
+              <i class="fas fa-briefcase"></i>
               <%= current_user.tenant.name %>
             <% end %>
           <% end %>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-hotel"></i>
               <% if current_user.tenants.include?(current_user.tenant) %>
                 Tenants
               <% else %>
@@ -54,7 +58,7 @@
 
             <ul class="dropdown-menu dropdown-menu-end">
               <%= link_to my_tenants_path, class: "dropdown-item #{'active' if current_page?(my_tenants_path) }"  do %>
-                <i class="fas fa-cog"></i>
+                <i class="fas fa-hotel"></i>
                 My Tenants
               <% end %>
 
