@@ -2,18 +2,21 @@
   <ul class="nav flex-column bg-dark shadow rounded">
     <li class="nav-item">
       <%= link_to tenant_path(current_tenant), class: "nav-link #{'bg-light shadow rounded' if current_page?(tenant_path(current_tenant)) }" do %>
+        <i class="fas fa-briefcase"></i>
         <%= current_tenant %>
       <% end %>
     </li>
 
     <li class="nav-item">
       <%= link_to dashboard_path, class: "nav-link #{'bg-light shadow rounded' if current_page?(dashboard_path) }" do %>
+        <i class="fas fa-tachometer-alt"></i>
         Dashboard
       <% end %>
     </li>
 
     <li class="nav-item">
       <%= link_to members_path, class: "nav-link #{'bg-light shadow rounded' if current_page?(members_path) }" do %>
+        <i class="fas fa-users"></i>
         Members
         <% if ActsAsTenant.current_tenant %>
           <span class="badge text-bg-info">
