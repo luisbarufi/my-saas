@@ -12,6 +12,12 @@ import "bootstrap/dist/css/bootstrap";
 require("stylesheets/application.scss")
 import '@fortawesome/fontawesome-free/js/all'
 
+import { config, library, dom } from '@fortawesome/fontawesome-svg-core'
+config.mutateApproach = 'sync'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+library.add(faGithub)
+dom.watch()
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
