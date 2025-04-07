@@ -17,6 +17,7 @@
         <th>email</th>
         <th>tenats</th>
         <th>current_tenant</th>
+        <th>members_count</th>
       </tr>
     </thead>
     <tbody>
@@ -33,6 +34,9 @@
           </td>
           <td>
             <%= user.tenant_id %>
+          </td>
+          <td>
+            <%= user.members_count %>
           </td>
         </tr>
       <% end %>
