@@ -2,12 +2,17 @@
   <div class="card-header">
     <h4>
       <strong>User:</strong>
-      <%= @member.user_id %>
+      <%= @member.user %>
     </h4>
   </div>
   <div class="card-body">
     <strong>Tenant:</strong>
-    <%= @member.tenant_id %>
+    <%= @member.tenant %>
+
+    <br>
+
+    <strong>Roles:</strong>
+    <%= @member.active_roles.join(" ") %>
   </div>
   <div class="card-footer">
     <%= link_to 'Edit', edit_member_path(@member) %> |

@@ -26,14 +26,15 @@
         <th>User</th>
         <th>Tenant id</th>
         <th>Tenant</th>
-        <th colspan="4">invitable</th>
-
+        <th>invitable</th>
+        <th>roles</th>
+        <th colspan="2"></th>
       </tr>
     </thead>
     <tbody>
       <% @members.each do |member| %>
         <tr>
-          <td><%= member.id %></td>
+          <td><%= link_to member.id, member %></td>
           <td><%= member.user %></td>
           <td><%= member.tenant.id %></td>
           <td><%= member.tenant %></td>
@@ -51,7 +52,9 @@
               <% end %>
             <% end %>
           </td>
-          <td><%= link_to 'Show', member %></td>
+          <td>
+            <%= member.active_roles.join(" ") %>
+          </td>
           <td><%= link_to 'Edit', edit_member_path(member) %></td>
           <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
