@@ -1,11 +1,13 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: %i[ show edit update destroy ]
   include SetTenant
   include RequireTenant
 
+  before_action :set_member, only: %i[ show edit update destroy ]
+  before_action :require_admin, only: %i[ edit update destroy ]
+
   # GET /members or /members.json
   def index
-    @members = Member.all
+    @members = Member.includes(:user, :tenant).all
   end
 
   def invite
@@ -75,5 +77,15 @@ class MembersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def member_params
       params.require(:member).permit(*Member::ROLES)
+    end
+
+    def require_admin
+      return if current_member&.admin?
+    
+      redirect_to members_path, alert: "You are not authorized"
+    end
+    
+    def current_member
+      @current_member ||= Member.find_by(user: current_user)
     end
 end

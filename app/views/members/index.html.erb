@@ -27,8 +27,7 @@
         <th>Tenant id</th>
         <th>Tenant</th>
         <th>invitable</th>
-        <th>roles</th>
-        <th colspan="2"></th>
+        <th colspan="3">roles</th>
       </tr>
     </thead>
     <tbody>
@@ -55,8 +54,14 @@
           <td>
             <%= member.active_roles.join(" ") %>
           </td>
-          <td><%= link_to 'Edit', edit_member_path(member) %></td>
-          <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+          <% if Member.find_by(user: current_user).admin? %>
+            <td><%= link_to 'Edit', edit_member_path(member) %></td>
+            <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td></td>
+            <td></td>
+          <% end %>
       <% end %>
     </tbody>
   </table>
