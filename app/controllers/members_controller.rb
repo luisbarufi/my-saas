@@ -3,6 +3,7 @@ class MembersController < ApplicationController
   include RequireTenant
 
   before_action :set_member, only: %i[ show edit update destroy ]
+  before_action :set_current_member
   before_action :require_admin, only: %i[ edit update destroy ]
 
   # GET /members or /members.json
@@ -80,12 +81,12 @@ class MembersController < ApplicationController
     end
 
     def require_admin
-      return if current_member&.admin?
+      return if @current_member&.admin?
     
       redirect_to members_path, alert: "You are not authorized"
     end
     
-    def current_member
+    def set_current_member
       @current_member ||= Member.find_by(user: current_user)
     end
 end

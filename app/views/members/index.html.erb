@@ -9,13 +9,15 @@
   </div>
 </h3>
 
-<%= form_tag invite_members_path, method: :get, class: 'row g-3' do %>
-  <div class="col-auto">
-    <%= email_field_tag 'email', nil, class: 'form-control', placeholder: 'email' %>
-  </div>
-  <div class="col-auto">
-    <%= submit_tag "Invite a member", class: 'btn btn-primary mb-3' %>
-  </div>
+<% if @current_member.admin? %>
+  <%= form_tag invite_members_path, method: :get, class: 'row g-3' do %>
+    <div class="col-auto">
+      <%= email_field_tag 'email', nil, class: 'form-control', placeholder: 'email' %>
+    </div>
+    <div class="col-auto">
+      <%= submit_tag "Invite a member", class: 'btn btn-primary mb-3' %>
+    </div>
+  <% end %>
 <% end %>
 
 <div class="table-responsive">
@@ -55,7 +57,7 @@
             <%= member.active_roles.join(" ") %>
           </td>
 
-          <% if Member.find_by(user: current_user).admin? %>
+          <% if @current_member.admin? %>
             <td><%= link_to 'Edit', edit_member_path(member) %></td>
             <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% else %>
