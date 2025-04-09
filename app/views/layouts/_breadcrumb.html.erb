@@ -1,0 +1,9 @@
+<div class="container-fluid py-2">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <% if content_for?(:breadcrumb) %>
+      <ol class="breadcrumb">
+        <%= yield :breadcrumb %>
+      </ol>
+    <% end %>
+  </nav>
+</div>

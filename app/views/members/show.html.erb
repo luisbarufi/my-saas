@@ -1,3 +1,11 @@
+<% provide(:breadcrumb) do %>
+  <%= mount_breadcrumb([
+    ['Início', root_path],
+    ['Members', members_path],
+    ['Member']
+  ]) %>
+<% end %>
+
 <div class="card shadow">
   <div class="card-header">
     <h4>

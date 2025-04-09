@@ -12,10 +12,11 @@
 
 <body class="d-flex flex-column min-vh-100">
   <%= render 'layouts/header' %>
+  <%= render 'layouts/breadcrumb' %>
   <%= flash_messages %>
 
   <main class="flex-grow-1">
-    <div class="container-fluid py-2">
+    <div class="container-fluid">
       <% if ActsAsTenant.current_tenant && current_user.tenants.include?(current_user.tenant) %>
         <div class="row">
           <div class="col-lg-2">

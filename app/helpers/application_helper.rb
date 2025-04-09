@@ -20,4 +20,15 @@ module ApplicationHelper
       end
     end.join.html_safe
   end
+
+  def mount_breadcrumb(items)
+    safe_join(
+      items.each_with_index.map do |(name, path), index|
+        is_last = index == items.size - 1
+        classes = "breadcrumb-item#{' active' if is_last}"
+
+        content_tag(:li, is_last ? name : link_to(name, path), class: classes, aria: (is_last ? { current: 'page' } : {}))
+      end
+    )
+  end
 end

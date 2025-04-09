@@ -1,3 +1,10 @@
+<% provide(:breadcrumb) do %>
+  <%= mount_breadcrumb([
+    ['Início', root_path],
+    ['Users']
+  ]) %>
+<% end %>
+
 <h3>
   <div class="text-center">
     <%= controller_name.humanize + ":" %>
