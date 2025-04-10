@@ -1,6 +1,7 @@
 class TenantsController < ApplicationController
   before_action :set_tenant, only: %i[ show edit update destroy switch ]
   before_action :require_admin, only: %i[ edit update destroy ]
+  before_action :require_member, only: %i[ show ]
 
   set_current_tenant_through_filter
 
@@ -89,9 +90,14 @@ class TenantsController < ApplicationController
     end
 
     def require_admin
-      return if Member.find_by(user: current_user, tenant: @tenant).present? && 
-        Member.find_by(user: current_user, tenant: @tenant).admin?
+      return if current_user.tenants.include?(@tenant) && Member.find_by(user: current_user, tenant: @tenant).admin?
     
+      redirect_to tenants_path, alert: "You are not authorized"
+    end
+
+    def require_member
+      return if current_user.tenants.include?(@tenant)
+
       redirect_to tenants_path, alert: "You are not authorized"
     end
 end
