@@ -1,5 +1,6 @@
 class TenantsController < ApplicationController
   before_action :set_tenant, only: %i[ show edit update destroy switch ]
+  before_action :require_admin, only: %i[ edit update destroy ]
 
   set_current_tenant_through_filter
 
@@ -85,5 +86,12 @@ class TenantsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def tenant_params
       params.require(:tenant).permit(:name)
+    end
+
+    def require_admin
+      return if Member.find_by(user: current_user, tenant: @tenant).present? && 
+        Member.find_by(user: current_user, tenant: @tenant).admin?
+    
+      redirect_to tenants_path, alert: "You are not authorized"
     end
 end

@@ -4,7 +4,7 @@ class MembersController < ApplicationController
 
   before_action :set_member, only: %i[ show edit update destroy ]
   before_action :set_current_member
-  before_action :require_admin, only: %i[ edit update destroy ]
+  before_action :require_admin, only: %i[ invite edit update destroy ]
 
   # GET /members or /members.json
   def index
