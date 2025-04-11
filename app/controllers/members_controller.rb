@@ -20,15 +20,15 @@ class MembersController < ApplicationController
         if Member.where(user: user_from_email).any?
           redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
         else
-          new_member = Member.create!(user: user_from_email)
+          new_member = Member.create!(user: user_from_email, viewer: true)
           MemberMailer.invited(new_member).deliver_now
           redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
         end
       elsif user_from_email.nil?
         new_user = User.invite!({ email: email }, current_user)
         if new_user.persisted?
-          Member.create!(user: new_user)
-          redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.id}"
+          Member.create!(user: new_user, viewer: true)
+          redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
         else
           redirect_to members_path, alert: "Something went wrong. Plase tray again"
         end
