@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'privacy', to: 'static_pages#privacy'
   get 'terms', to: 'static_pages#terms'
 
+  resources :contacts
+
   resources :users, only: [:index, :show] do
     member do
       patch :resend_invitation
@@ -22,7 +24,6 @@ Rails.application.routes.draw do
       patch :switch
     end
   end
-
 
   resources :members, execpt: [:create, :new] do
     get :invite, on: :collection
