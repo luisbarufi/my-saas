@@ -1,4 +1,7 @@
 class ContactsController < ApplicationController
+  include SetTenant
+  include RequireTenant
+
   before_action :set_contact, only: %i[ show edit update destroy ]
 
   # GET /contacts or /contacts.json
@@ -65,6 +68,6 @@ class ContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def contact_params
-      params.require(:contact).permit(:first_name, :last_name, :phone_number, :email, :tenant_id)
+      params.require(:contact).permit(:first_name, :last_name, :phone_number, :email)
     end
 end
