@@ -1,5 +1,20 @@
-<h1>New Contact</h1>
+<% provide(:breadcrumb) do %>
+  <%= mount_breadcrumb([
+    ['Início', root_path],
+    ['Contacts', contacts_path],
+    ['New']
+  ]) %>
+<% end %>
 
-<%= render 'form', contact: @contact %>
-
-<%= link_to 'Back', contacts_path %>
+<div class="card shadow">
+  <div class="card-header">
+    <h4>New Contact</h4>
+  </div>
+  <div class="card-body">
+    <%= render 'form', contact: @contact %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Back', contacts_path %>
+  </div>
+</div>
+<br>
