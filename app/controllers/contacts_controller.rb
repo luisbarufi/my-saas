@@ -1,8 +1,10 @@
 class ContactsController < ApplicationController
   include SetTenant
   include RequireTenant
+  include SetCurrentMember
 
   before_action :set_contact, only: %i[ show edit update destroy ]
+  before_action :require_admin_or_editor, only: %i[ edit update destroy ]
 
   # GET /contacts or /contacts.json
   def index
@@ -69,5 +71,11 @@ class ContactsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def contact_params
       params.require(:contact).permit(:first_name, :last_name, :phone_number, :email)
+    end
+
+    def require_admin_or_editor
+      return if @current_member&.admin? || @current_member&.editor?
+    
+      redirect_to contacts_path, alert: "You are not authorized"
     end
 end
