@@ -3,14 +3,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'static_pages#landing_page'
-  get 'static_pages/index'
-  get 'dashboard', to: 'home#dashboard'
+  # get 'static_pages/index'
   get 'pricing', to: 'static_pages#pricing'
   get 'about', to: 'static_pages#about'
   get 'privacy', to: 'static_pages#privacy'
   get 'terms', to: 'static_pages#terms'
 
-  resources :contacts
+  get 'dashboard', to: 'home#dashboard'
 
   resources :users, only: [:index, :show] do
     member do
@@ -28,4 +27,8 @@ Rails.application.routes.draw do
   resources :members, execpt: [:create, :new] do
     get :invite, on: :collection
   end
+
+  resources :contacts
+
+  get 'tenants/:id/leads/new', to: 'leads#new'
 end

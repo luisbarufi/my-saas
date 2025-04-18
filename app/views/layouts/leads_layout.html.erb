@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Saas</title>
+    <title><%= current_tenant.name %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,26 +11,12 @@
   </head>
 
   <body class="d-flex flex-column min-vh-100">
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/breadcrumb' %>
     <%= flash_messages %>
 
     <main class="flex-grow-1">
       <div class="container-fluid">
-        <% if ActsAsTenant.current_tenant && current_user.tenants.include?(current_user.tenant) %>
-          <div class="row">
-            <div class="col-lg-2">
-              <%= render 'layouts/sidebar' %>
-            </div>
-            <div class="col-lg-10">
-              <%= yield %>
-            </div>
-          </div>
-        <% else %>
-          <%= yield %>
-        <% end %>
+        <%= yield %>
       </div>
     </main>
-    <%= render 'layouts/footer' %>
   </body>
 </html>
