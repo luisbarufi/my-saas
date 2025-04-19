@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def flash_messages
     flash.map do |msg_type, message|
-      content_tag(:div, class: "alert #{bootstrap_class_for(msg_type)} alert-dismissible fade show", role: "alert") do
+      content_tag(:div, class: "alert #{bootstrap_class_for(msg_type)} alert-dismissible fade show auto-dismiss", role: "alert") do
         safe_join([
           content_tag(:button, '', class: "btn-close", data: { bs_dismiss: 'alert' }),
           message

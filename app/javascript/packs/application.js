@@ -21,3 +21,15 @@ dom.watch()
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import { Alert } from 'bootstrap';
+
+document.addEventListener("turbolinks:load", function () {
+  const alerts = document.querySelectorAll(".alert-dismissible");
+  alerts.forEach((alert) => {
+    setTimeout(() => {
+      const bsAlert = Alert.getOrCreateInstance(alert);
+      bsAlert.close();
+    }, 5000);
+  });
+});
