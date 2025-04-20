@@ -33,6 +33,7 @@ gem 'devise'
 gem 'simple_form'
 gem 'devise_invitable', '~> 2.0.0'
 gem 'acts_as_tenant'
+gem 'friendly_id'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
