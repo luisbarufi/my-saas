@@ -3,13 +3,14 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
-import 'bootstrap/dist/js/bootstrap'
-import "bootstrap/dist/css/bootstrap";
-require("stylesheets/application.scss")
+import Rails from '@rails/ujs'
+import Turbolinks from 'turbolinks'
+import * as ActiveStorage from '@rails/activestorage'
+import 'channels'
+// import 'bootstrap/dist/js/bootstrap'
+import * as bootstrap from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap';
+require('stylesheets/application.scss')
 import '@fortawesome/fontawesome-free/js/all'
 
 import { config, library, dom } from '@fortawesome/fontawesome-svg-core'
@@ -22,13 +23,11 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import { Alert } from 'bootstrap';
-
-document.addEventListener("turbolinks:load", function () {
-  const alerts = document.querySelectorAll(".alert-dismissible");
+document.addEventListener('turbolinks:load', function () {
+  const alerts = document.querySelectorAll('.alert-dismissible');
   alerts.forEach((alert) => {
     setTimeout(() => {
-      const bsAlert = Alert.getOrCreateInstance(alert);
+      const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
       bsAlert.close();
     }, 5000);
   });
