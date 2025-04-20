@@ -1,18 +1,9 @@
-<div class="container py-4">
-  <% provide(:breadcrumb) do %>
-    <%= mount_breadcrumb([
-      ['Início', root_path],
-      ['Contacts', contacts_path],
-      ['New']
-    ]) %>
-  <% end %>
-
+<div class="container">
   <div class="card shadow">
     <div class="card-header">
       <h4>
-        Current Tenant:
         <%= current_tenant.name %>
-        <%= current_tenant.id %>
+        New Contact
       </h4>
     </div>
     <div class="card-body">
@@ -30,9 +21,7 @@
         <div class="form-actions">
           <%= f.button :submit %>
         </div>
-        <% end %>
-    </div>
-    <div class="card-footer">
+      <% end %>
     </div>
   </div>
 </div>
