@@ -5,49 +5,49 @@
     [@contact.first_name]
   ]) %>
 <% end %>
+
 <div class="container">
-<div class="card shadow">
-  <div class="card-header">
-    <h4>
-      <strong>Contact id:</strong>
-      <%= @contact.id %>
-    </h4>
-  </div>
-  <div class="card-body">
-  <p>
-    <strong>First name:</strong>
-    <%= @contact.first_name %>
-  </p>
+  <div class="card shadow">
+    <div class="card-header">
+      <h4>
+        <strong>Contact id:</strong>
+        <%= @contact.id %>
+      </h4>
+    </div>
+    <div class="card-body">
+    <p>
+      <strong>First name:</strong>
+      <%= @contact.first_name %>
+    </p>
 
-  <p>
-    <strong>Last name:</strong>
-    <%= @contact.last_name %>
-  </p>
+    <p>
+      <strong>Last name:</strong>
+      <%= @contact.last_name %>
+    </p>
 
-  <p>
-    <strong>Phone number:</strong>
-    <%= @contact.phone_number %>
-  </p>
+    <p>
+      <strong>Phone number:</strong>
+      <%= @contact.phone_number %>
+    </p>
 
-  <p>
-    <strong>Email:</strong>
-    <%= @contact.email %>
-  </p>
+    <p>
+      <strong>Email:</strong>
+      <%= @contact.email %>
+    </p>
 
-  <p>
-    <strong>Tenant:</strong>
-    <%= @contact.tenant.name %>
-  </p>
+    <p>
+      <strong>Tenant:</strong>
+      <%= @contact.tenant.name %>
+    </p>
 
-  </div>
-  <div class="card-footer">
-    <% if @current_member %>
-      <% if @current_member.admin? || @current_member.editor? %>
-        <%= link_to 'Edit', edit_contact_path(@contact) %>
+    </div>
+    <div class="card-footer">
+      <% if @current_member %>
+        <% if @current_member.admin? || @current_member.editor? %>
+          <%= link_to 'Edit', edit_contact_path(@contact) %>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= link_to 'Back', contacts_path %>
+      <%= link_to 'Back', contacts_path %>
+    </div>
   </div>
 </div>
-</div>
-<br>
