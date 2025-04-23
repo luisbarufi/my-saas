@@ -1,4 +1,6 @@
 class Member < ApplicationRecord
+  extend FriendlyId
+
   belongs_to :user, counter_cache: true
 
   validates :tenant_id, presence: true
@@ -7,6 +9,12 @@ class Member < ApplicationRecord
   validate :must_have_an_admin
 
   acts_as_tenant(:tenant)
+
+  def to_s
+    user.email.to_s + tenant.name.to_s
+  end
+
+  friendly_id :to_s, use: :slugged
 
   ROLES = [:admin, :editor, :viewer]
 

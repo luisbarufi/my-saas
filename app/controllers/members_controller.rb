@@ -72,7 +72,7 @@ class MembersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_member
-      @member = Member.find(params[:id])
+      @member = Member.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -82,7 +82,7 @@ class MembersController < ApplicationController
 
     def require_admin
       return if @current_member&.admin?
-    
+
       redirect_to members_path, alert: "You are not authorized"
     end
 end
