@@ -1,3 +1,11 @@
 @use '@fortawesome/fontawesome-free';
 
 body { background: #f8f0e6; }
+
+.input.radio_buttons label {
+  margin-left: 4px; /* ou 0.5rem se preferir */
+}
+
+.radio-item input {
+  margin-right: 6px;
+}

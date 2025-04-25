@@ -22,6 +22,7 @@
       <tr>
         <th>id</th>
         <th>name</th>
+        <th>plan</th>
         <th colspan="4">users</th>
       </tr>
     </thead>
@@ -37,6 +38,9 @@
           </td>
           <td>
             <%= tenant.name %>
+          </td>
+          <td>
+            <%= tenant.plan %>
           </td>
           <td>
             <%= tenant.users.compact.join(', ') %>
@@ -55,6 +59,8 @@
           <% if current_user.tenants.include?(tenant) && Member.find_by(user: current_user, tenant: tenant).admin? %>
             <td><%= link_to 'Edit', edit_tenant_path(tenant) %></td>
             <td><%= link_to 'Destroy', tenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td colspan="2"></td>
           <% end %>
         </tr>
       <% end %>
