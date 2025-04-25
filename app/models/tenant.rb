@@ -3,7 +3,8 @@ class Tenant < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :name, length: { in: 2..20 }
-  validates :name, exclusion: { in: %w(blog app sex organization), message: "%{value} is reserved" }
+  RESERVED_NAMES = %w(blog app pricing terms help support tenant tenants user users sex organization)
+  validates :name, exclusion: { in: RESERVED_NAMES, message: "%{value} is reserved" }
 
   has_many :members, dependent: :destroy
   has_many :users, through: :members
