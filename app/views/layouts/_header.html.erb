@@ -21,7 +21,7 @@
             <%= link_to users_path, class: "nav-link #{'active' if current_page?(users_path) }" do %>
               <i class="fas fa-users"></i>
               Users
-              <span class="badge text-bg-info">
+              <span class="badge text-bg-primary">
                 <%= User.count %>
               </span>
             <% end %>
@@ -31,7 +31,7 @@
             <%= link_to tenants_path, class: "nav-link #{'active' if current_page?(tenants_path) }" do %>
               <i class="fas fa-hotel"></i>
               Tenants
-              <span class="badge text-bg-info">
+              <span class="badge text-bg-primary">
                 <%= Tenant.count %>
               </span>
             <% end %>

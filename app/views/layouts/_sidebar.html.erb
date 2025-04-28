@@ -4,6 +4,11 @@
       <%= link_to tenant_path(current_tenant), class: "nav-link #{'bg-light shadow rounded' if current_page?(tenant_path(current_tenant)) }" do %>
         <i class="fas fa-briefcase"></i>
         <%= current_tenant %>
+        <% if ActsAsTenant.current_tenant %>
+          <span class="badge text-bg-primary">
+            <%= current_tenant.plan %>
+          </span>
+        <% end %>
       <% end %>
     </li>
 
@@ -19,7 +24,7 @@
         <i class="fas fa-users"></i>
         Members
         <% if ActsAsTenant.current_tenant %>
-          <span class="badge text-bg-info">
+          <span class="badge text-bg-primary">
             <%= Member.count %>
           </span>
         <% end %>
@@ -31,7 +36,7 @@
         <i class="fas fa-address-book"></i>
         Contacts
         <% if ActsAsTenant.current_tenant %>
-          <span class="badge text-bg-info">
+          <span class="badge text-bg-primary">
             <%= Member.count %>
           </span>
         <% end %>
