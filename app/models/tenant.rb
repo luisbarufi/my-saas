@@ -23,4 +23,8 @@ class Tenant < ApplicationRecord
   def to_s
     name
   end
+
+  def can_invite_members?
+    self.plan == "team" 
+  end
 end

@@ -15,26 +15,30 @@ class MembersController < ApplicationController
     email = params[:email]
     user_from_email = User.where(email: email).first
 
-    if email.present?
-      if user_from_email.present?
-        if Member.where(user: user_from_email).any?
-          redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
-        else
-          new_member = Member.create!(user: user_from_email, viewer: true)
-          MemberMailer.invited(new_member).deliver_now
-          redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
+    if current_tenant.can_invite_members?
+      if email.present?
+        if user_from_email.present?
+          if Member.where(user: user_from_email).any?
+            redirect_to members_path, alert: "The organization #{current_tenant.name} already has a user with the email #{email}"
+          else
+            new_member = Member.create!(user: user_from_email, viewer: true)
+            MemberMailer.invited(new_member).deliver_now
+            redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
+          end
+        elsif user_from_email.nil?
+          new_user = User.invite!({ email: email }, current_user)
+          if new_user.persisted?
+            Member.create!(user: new_user, viewer: true)
+            redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
+          else
+            redirect_to members_path, alert: "Something went wrong. Plase tray again"
+          end
         end
-      elsif user_from_email.nil?
-        new_user = User.invite!({ email: email }, current_user)
-        if new_user.persisted?
-          Member.create!(user: new_user, viewer: true)
-          redirect_to members_path, notice: "#{email} was invited to join the organization #{current_tenant.name}"
-        else
-          redirect_to members_path, alert: "Something went wrong. Plase tray again"
-        end
+      else
+        redirect_to members_path, alert: "No email provided!"
       end
     else
-      redirect_to members_path, alert: "No email provided!"
+      redirect_to members_path, alert: "SOLO plan cannot invite members. Please upgrade your plan!"
     end
   end
 
