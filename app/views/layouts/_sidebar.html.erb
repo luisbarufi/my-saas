@@ -5,7 +5,7 @@
         <i class="fas fa-briefcase"></i>
         <%= current_tenant %>
         <% if ActsAsTenant.current_tenant %>
-          <span class="badge text-bg-primary">
+          <span class="badge badge-purple">
             <%= current_tenant.plan %>
           </span>
         <% end %>
@@ -24,7 +24,7 @@
         <i class="fas fa-users"></i>
         Members
         <% if ActsAsTenant.current_tenant %>
-          <span class="badge text-bg-primary">
+          <span class="badge badge-purple">
             <%= Member.count %>
           </span>
         <% end %>
@@ -36,7 +36,7 @@
         <i class="fas fa-address-book"></i>
         Contacts
         <% if ActsAsTenant.current_tenant %>
-          <span class="badge text-bg-primary">
+          <span class="badge badge-purple">
             <%= Member.count %>
           </span>
         <% end %>

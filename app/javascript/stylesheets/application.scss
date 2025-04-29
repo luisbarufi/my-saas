@@ -2,10 +2,11 @@
 
 body { background: #f8f0e6; }
 
-.input.radio_buttons label {
-  margin-left: 4px; /* ou 0.5rem se preferir */
-}
+.input.radio_buttons label { margin-left: 4px; }
 
-.radio-item input {
-  margin-right: 6px;
+.radio-item input { margin-right: 6px; }
+
+.badge-purple {
+  background-color: #7343a0;
+  color: #fff;
 }
