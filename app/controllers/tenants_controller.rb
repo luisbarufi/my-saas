@@ -86,7 +86,7 @@ class TenantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tenant_params
-      params.require(:tenant).permit(:name, :plan)
+      params.require(:tenant).permit(:name, :plan, :logo)
     end
 
     def require_admin
