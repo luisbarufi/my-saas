@@ -21,6 +21,7 @@
     <thead>
       <tr>
         <th>id</th>
+        <th>logo</th>
         <th>name</th>
         <th>plan</th>
         <th colspan="4">users</th>
@@ -36,15 +37,10 @@
               <%= tenant.id %>
             <% end %>
           </td>
-          <td>
-            <%= tenant.name %>
-          </td>
-          <td>
-            <%= tenant.plan %>
-          </td>
-          <td>
-            <%= tenant.users.compact.join(', ') %>
-          </td>
+          <td><%= image_tag tenant.logo, size: "25x25", class: "rounded" if tenant.logo.attached? %></td>
+          <td><%= tenant.name %></td>
+          <td><%= tenant.plan %></td>
+          <td><%= tenant.users.compact.join(', ') %></td>
           <td>
             <% if current_user.tenants.include?(tenant) %>
               <% if current_user.tenant == tenant %>
