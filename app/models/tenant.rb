@@ -4,6 +4,10 @@ class Tenant < ApplicationRecord
   RESERVED_PLANS = %w(solo team)
   PLANS = [:solo, :team]
 
+  has_one_attached :logo
+  validates :logo, content_type: [:png, :jpg, :jpeg],
+    size: { less_than: 100.kilobytes, message: 'must be smaller than 100 KB' }
+
   validates :name, presence: true, uniqueness: true
   validates :name, length: { in: 2..20 }
   validates :name, exclusion: { in: RESERVED_NAMES, message: "%{value} is reserved" }
@@ -27,6 +31,4 @@ class Tenant < ApplicationRecord
   def can_invite_members?
     self.plan == "team" 
   end
-
-  has_one_attached :logo
 end

@@ -5,7 +5,12 @@
   <div class="form-inputs">
     <%= f.input :name %>
     <%= f.input :plan, collection: Tenant::PLANS, include_blank: false, as: :radio_buttons, item_wrapper_class: 'radio-item' %>
-    <%= image_tag @tenant.logo, size: "50x50", class: "rounded" if @tenant.logo.attached? %>
+    <% if @tenant.logo.attached? %>
+      <%= image_tag @tenant.logo, size: "50x50", class: "rounded" %>
+      <%= @tenant.logo.filename %>
+      <%= number_to_human_size(@tenant.logo.byte_size) %>
+    <% end %>
+
     <%= f.input :logo %>
   </div>
 
