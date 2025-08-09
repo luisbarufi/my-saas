@@ -10,9 +10,7 @@
     <%= controller_name.humanize + ":" %>
     <%= action_name.humanize %>
 
-    <div class="badge badge-purple">
-      <%= @users.count %>
-    </div>
+    <div class="badge badge-purple"><%= @users.count %></div>
   </div>
 </h3>
 
@@ -25,26 +23,18 @@
         <th>tenats</th>
         <th>current_tenant</th>
         <th>members_count</th>
+        <th>confirmed</th>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td>
-            <%= link_to user.id, user %>
-          </td>
-          <td>
-            <%= user.email %>
-          </td>
-          <td>
-            <%= user.tenants.compact.join(', ') %>
-          </td>
-          <td>
-            <%= user.tenant_id %>
-          </td>
-          <td>
-            <%= user.members_count %>
-          </td>
+          <td><%= link_to user.id, user %></td>
+          <td><%= user.email %></td>
+          <td><%= user.tenants.compact.join(', ') %></td>
+          <td><%= user.tenant_id %></td>
+          <td><%= user.members_count %></td>
+          <td><%= user.confirmed_at.present? %></td>
         </tr>
       <% end %>
     </tbody>

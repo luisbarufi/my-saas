@@ -16,6 +16,13 @@
   <div class="card-body">
     <strong>Email:</strong>
     <%= @user.email %>
+    <br>  
+    <strong>Confirmed email?</strong>
+    <% if @user.confirmed_at.present? %>
+      <span class="badge text-bg-success">Yes</span>
+    <% else %>
+      <span class="badge text-bg-danger">No</span>
+    <% end %>
   </div>
   <div class="card-footer">
     <%= link_to 'Back', users_path %>
